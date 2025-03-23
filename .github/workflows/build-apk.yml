@@ -22,48 +22,41 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
         
-    # Setup Android SDK
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-      
-    # Setup Dart
+    # Setup Flutter
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        
+    # Setup Dart (included with Flutter, but explicit setup for clarity)
     - name: Setup Dart
       uses: dart-lang/setup-dart@v1
       with:
         sdk: stable
         
-    # Cache Gradle dependencies
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-          
+    # Get Flutter dependencies
+    - name: Get dependencies
+      run: flutter pub get
+      
     # Grant execute permissions
     - name: Grant execute permissions
-      run: |
-        chmod +x gradlew
-        chmod +x generate_all.sh
-        
+      run: chmod +x generate_all.sh
+      
     # Run build_runner
     - name: Run build_runner
-      run: dart run build_runner build --delete-conflicting-outputs
+      run: flutter pub run build_runner build --delete-conflicting-outputs
       
     # Run generate_all.sh
     - name: Run generate_all script
       run: sh generate_all.sh
       
     # Build APK
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+    - name: Build APK
+      run: flutter build apk --debug
       
     # Upload APK
     - name: Upload APK
-      uses: actions/upload-artifact@v4  # เปลี่ยนจาก v3 เป็น v4
+      uses: actions/upload-artifact@v4
       with:
         name: app-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: build/app/outputs/flutter-apk/app-debug.apk
