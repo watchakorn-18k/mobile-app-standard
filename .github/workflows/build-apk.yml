@@ -38,6 +38,9 @@ jobs:
     - name: Get dependencies
       run: flutter pub get
      
+    - name: Generate localization files
+      run: flutter gen-l10n
+
     # Grant execute permissions
     - name: Grant execute permissions
       run: chmod +x generate_i18n.sh
