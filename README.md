@@ -145,6 +145,17 @@ flutter build apk --target-platform android-arm,android-arm64 --split-per-abi
 adb exec-out run-as com.example.mobile_app cat /data/data/com.example.mobile_app/app_flutter/my_database.sqlite > my_database.sqlite
 ```
 
+### Publish to Release
+
+### Publish to Release
+
+- If you want the GitHub Action to run, create a new release, and it will automatically generate the APK for you. However, you need to grant additional permissions first.
+- Go to your repository `(username/mobile-app-standard)`.
+- Click `Settings > Actions > General`.
+- In the Workflow permissions section:
+  - Select `"Read and write permissions."`
+  - Click Save to grant the workflow higher permissions.
+
 ### More
 
 - When using an API with a localhost in the Android Studio emulator for Flutter, utilize `http://10.0.2.2` instead of `localhost`.

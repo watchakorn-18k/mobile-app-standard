@@ -1,5 +1,8 @@
 name: Build and Attach APK to Release
 
+permissions:
+  contents: write
+
 on:
   release:
     types: [published]  # Trigger เมื่อมีการสร้าง release ใหม่
