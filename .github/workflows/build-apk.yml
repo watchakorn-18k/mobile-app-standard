@@ -37,20 +37,17 @@ jobs:
     # Get Flutter dependencies
     - name: Get dependencies
       run: flutter pub get
-
-    - name: Grant execute permissions
-      run: ls       
+     
     # Grant execute permissions
     - name: Grant execute permissions
-      run: chmod +x generate_all.sh
+      run: chmod +x generate_i18n.sh
       
     # Run build_runner
     - name: Run build_runner
       run: flutter pub run build_runner build --delete-conflicting-outputs
-      
-    # Run generate_all.sh
+  
     - name: Run generate_all script
-      run: sh generate_all.sh
+      run: sh generate_i18n.sh
       
     # Build APK
     - name: Build APK
