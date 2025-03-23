@@ -1,10 +1,8 @@
 name: Build APK
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  release:
+    types: [published]  # Trigger เมื่อ release ถูกเผยแพร่
 
 jobs:
   build:
@@ -54,11 +52,11 @@ jobs:
 
     # Build APK
     - name: Build APK
-      run: flutter build apk --debug
+      run: flutter build apk --release  # เปลี่ยนจาก --debug เป็น --release
       
     # Upload APK
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug.apk
-        path: build/app/outputs/flutter-apk/app-debug.apk
+        name: app-release.apk  # เปลี่ยนชื่อไฟล์เป็น release
+        path: build/app/outputs/flutter-apk/app-release.apk  # ปรับ path ให้ตรงกับ release
