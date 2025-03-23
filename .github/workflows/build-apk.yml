@@ -46,14 +46,14 @@ jobs:
       run: flutter pub add flutter_localization
 
     # Run build_runner
-    - name: Run build_runner
-      run: flutter pub run build_runner build --delete-conflicting-outputs
+    # - name: Run build_runner
+    #   run: flutter pub run build_runner build --delete-conflicting-outputs
   
     - name: Run generate_all script
       run: sh generate_i18n.sh
 
     - name: Run generate_all script
-      run: ls/.dart_tool/flutter_gen/gen_l10n -a
+      run: tree .dart_tool
     # # Build APK
     # - name: Build APK
     #   run: flutter build apk --debug
