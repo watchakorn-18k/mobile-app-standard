@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              msg.text_welcome('Fakduai APP'),
+              msg.text_welcome('WK APP'),
               style: TextStyle(
                 fontSize: PText.text2xl,
               ),

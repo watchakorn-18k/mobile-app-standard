@@ -89,7 +89,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Fakduai ',
+            text: 'WK ',
             style: TextStyle(
               color: PColor.primaryColor,
               fontWeight: FontWeight.bold,
