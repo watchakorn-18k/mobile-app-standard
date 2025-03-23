@@ -21,7 +21,9 @@ for dir in "$LOCALS_DIR"/*; do
             --arb-dir "$LOCALS_DIR/$page_name" \
             --template-arb-file en.arb \
             --output-localization-file "$output_file" \
-            --output-class "$class_name"
+            --output-class "$class_name" \
+            --output-dir "lib/generated" \
+            --no-synthetic-package
     fi
 done
 
@@ -38,7 +40,7 @@ EOF
 for dir in "$LOCALS_DIR"/*; do
     if [ -d "$dir" ]; then
         page_name=$(basename "$dir")
-        echo "import 'package:flutter_gen/gen_l10n/${page_name}_localizations.dart';" >> "$I18N_FILE"
+        echo "import 'package:mobile_app_standard/generated/${page_name}_localizations.dart';" >> "$I18N_FILE"
     fi
 done
 

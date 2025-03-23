@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/appbar_localizations.dart';
-import 'package:flutter_gen/gen_l10n/general_localizations.dart';
-import 'package:flutter_gen/gen_l10n/home_page_localizations.dart';
-import 'package:flutter_gen/gen_l10n/todo_page_localizations.dart';
+import 'package:mobile_app_standard/generated/appbar_localizations.dart';
+import 'package:mobile_app_standard/generated/general_localizations.dart';
+import 'package:mobile_app_standard/generated/home_page_localizations.dart';
+import 'package:mobile_app_standard/generated/todo_page_localizations.dart';
 
 class I18n {
   static final all = [
