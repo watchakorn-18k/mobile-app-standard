@@ -1,8 +1,10 @@
-name: Build APK
+name: Build and Release APK
 
 on:
-  release:
-    types: [published]  # Trigger เมื่อ release ถูกเผยแพร่
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -26,7 +28,7 @@ jobs:
       with:
         channel: 'stable'
         
-    # Setup Dart (included with Flutter, but explicit setup for clarity)
+    # Setup Dart
     - name: Setup Dart
       uses: dart-lang/setup-dart@v1
       with:
@@ -50,13 +52,19 @@ jobs:
     - name: Run generate_all script
       run: sh generate_i18n.sh
 
-    # Build APK
+    # Build APK (เปลี่ยนจาก debug เป็น release)
     - name: Build APK
-      run: flutter build apk --release  # เปลี่ยนจาก --debug เป็น --release
+      run: flutter build apk --release
       
-    # Upload APK
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
+    # Create Release and Upload APK
+    - name: Create Release and Upload APK
+      if: github.event_name == 'push'  # รันเฉพาะเมื่อ push ไม่รันใน pull request
+      uses: softprops/action-gh-release@v1
       with:
-        name: app-release.apk  # เปลี่ยนชื่อไฟล์เป็น release
-        path: build/app/outputs/flutter-apk/app-release.apk  # ปรับ path ให้ตรงกับ release
+        files: build/app/outputs/flutter-apk/app-release.apk
+        tag_name: v${{ github.run_number }}
+        name: Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
