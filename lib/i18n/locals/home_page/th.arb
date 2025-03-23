@@ -1,17 +1,9 @@
 {
     "@@locale": "th",
     "text_welcome": "ยินดีต้อนรับสู่ {appName}",
-    "@text_welcome": {
-        "placeholders": {
-            "appName": {}
-        }
-    },
+    "@text_welcome": {},
     "btn_check_ip": "ตรวจสอบ IP",
     "@btn_check_ip": {},
     "text_ip": "ไอพี: {ip}",
-    "@text_ip": {
-        "placeholders": {
-            "ip": {}
-        }
-    }
+    "@text_ip": {}
 }
